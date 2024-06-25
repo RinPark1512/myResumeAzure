@@ -15,11 +15,11 @@ using System.Text;
 
 namespace Company.Function
 {
-    public static class GetResumeCoutner
+    public static class ResetResumeCounter
     {
-        [FunctionName("GetResumeCoutner")]
+        [FunctionName("ResetResumeCounter")]
         public static HttpResponseMessage Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
             [CosmosDB(
                 databaseName:"AzureResume", 
                 collectionName: "Counter", 
@@ -38,7 +38,7 @@ namespace Company.Function
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             updatedCounter = counter; // update the counter
-            updatedCounter.Count += 1;
+            updatedCounter.Count = 0;
 
             var jsonToReturn = JsonConvert.SerializeObject(counter);
             
