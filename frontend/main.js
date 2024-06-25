@@ -7,10 +7,12 @@ window.addEventListener('DOMContentLoaded', (event) =>{
 const functionAPIURL = 'https://getresumecountermy.azurewebsites.net/api/GetResumeCoutner?code=L9qBaU2Wa1xjkXx72-QiMOGpqVEc3rw4VFfqpZLZ1YjrAzFuFnaQ_Q%3D%3D';
 const localfunctionApi = 'http://localhost:7071/api/GetResumeCoutner';
 const resetLocalApi = 'http://localhost:7071/api/ResetResumeCounter';
+const resetFunctionUrl = 'https://getresumecountermy.azurewebsites.net/api/ResetResumeCounter?code=S6VFLosnftr_ZgA4PTj73QZrhRLMedP1ESpltN3iPZpVAzFualIcWg%3D%3D';
+// 
 
 const getVisitCount = () => {
     let count = 30;
-    fetch(localfunctionApi).then(response => {
+    fetch(functionAPIURL).then(response => {
         return response.json()
     }).then(response =>{
         console.log("Website called function Api.");
@@ -32,7 +34,7 @@ window.onload = function(){
 const resetCounter = () => {
     let count = 0;
     var data = new FormData();
-    fetch(resetLocalApi, {
+    fetch(resetFunctionUrl, {
         method: 'POST',
         body: data
     }).then(response => {
